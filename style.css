@@ -1,5 +1,6 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
@@ -8,7 +9,7 @@ body {
 .form-container {
   background-color: white;
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   margin: 50px auto;
   padding: 20px;
   border-radius: 8px;
@@ -54,3 +55,11 @@ button:hover {
   color: green;
   text-align: center;
 }
+
+.disabled-label {
+  color: #aaa;        /* muted gray */
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+
