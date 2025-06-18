@@ -7,73 +7,84 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="form-container">
-    <h1>Select your subjects</h1>
+    <div class="form-container">
+        <h1>Select your subjects</h1>
 
-    <div class="group">
-        <h2>Group 1: Studies of Languages and Literature</h2>
-        <label><input type="checkbox" name="linguagens" value="portuguese_hl"> Portuguese A - HL</label><br>
-        <label><input type="checkbox" name="linguagens" value="portuguese_sl"> Portuguese A - SL</label><br>
-        <label><input type="checkbox" name="linguagens" value="english_hl"> English A - HL</label><br>
-        <label><input type="checkbox" name="linguagens" value="english_sl"> English A - SL</label>
+        <div class="column">
+            <div class="group">
+                <h2>Group 1: Studies of Languages and Literature</h2>
+                <label><input type="checkbox" name="linguagens" value="portuguese_hl"> Portuguese A - HL</label><br>
+                <label><input type="checkbox" name="linguagens" value="portuguese_sl"> Portuguese A - SL</label><br>
+                <label><input type="checkbox" name="linguagens" value="english_hl"> English A - HL</label><br>
+                <label><input type="checkbox" name="linguagens" value="english_sl"> English A - SL</label>
+            </div>
+
+            <div class="group">
+                <h2>Group 2: Language Acquisition</h2>
+                <label><input type="checkbox" name="linguagem_aquisicao" value="french_hl"> French B - HL</label><br>
+                <label><input type="checkbox" name="linguagem_aquisicao" value="french_sl"> French B - SL</label><br>
+                <label><input type="checkbox" name="linguagem_aquisicao" value="spanish_hl"> Spanish B - HL</label><br>
+                <label><input type="checkbox" name="linguagem_aquisicao" value="spanish_sl"> Spanish B - SL</label><br>
+                <label><input type="checkbox" name="linguagem_aquisicao" value="g2_none"> None </label>
+            </div>
+
+            <div class="group">
+                <h2>Group 3: Individuals and Societies</h2>
+                <label><input type="checkbox" name="individuos_sociedades" value="history_hl"> History - HL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="history_sl"> History - SL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="geography_hl"> Geography - HL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="geography_sl"> Geography - SL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="bss_hl"> BSS - HL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="bss_sl"> BSS - SL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="economy_hl"> Economia - HL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="economy_sl"> Economia - SL </label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="ess_hl"> ESS - HL</label><br>
+                <label><input type="checkbox" name="individuos_sociedades" value="ess_sl"> ESS - SL</label>
+            </div>
+
+            <div class="group">
+                <h2>Group 4: Sciences</h2>
+                <label><input type="checkbox" name="ciencias" value="biology_hl"> Biology - HL </label><br>
+                <label><input type="checkbox" name="ciencias" value="biology_sl"> Biology - SL </label><br>
+                <label><input type="checkbox" name="ciencias" value="chemistry_hl"> Chemistry - HL </label><br>
+                <label><input type="checkbox" name="ciencias" value="chemistry_sl"> Chemistry - SL </label><br>
+                <label><input type="checkbox" name="ciencias" value="physics_hl"> Physics - HL </label><br>
+                <label><input type="checkbox" name="ciencias" value="physics_sl"> Physics - SL </label><br>
+                <label><input type="checkbox" name="ciencias" value="cs_hl"> Computer Science - HL </label><br>
+                <label><input type="checkbox" name="ciencias" value="cs_sl"> Computer Science - SL </label>
+            </div>
+
+            <div class="group">
+                <h2>Group 5: Mathematics</h2>
+                <label><input type="checkbox" name="matematica" value="maths_aahl"> Mathematics - AA HL </label><br>
+                <label><input type="checkbox" name="matematica" value="maths_aasl"> Mathematics - AA SL </label><br>
+                <label><input type="checkbox" name="matematica" value="maths_aihl"> Mathematics - AI HL </label><br>
+                <label><input type="checkbox" name="matematica" value="maths_aisl"> Mathematics - AI SL </label>
+            </div>
+
+            <div class="group">
+                <h2>Group 6: Arts</h2>
+                <label><input type="checkbox" name="artes" value="music"> Music - HL</label><br>
+                <label><input type="checkbox" name="artes" value="music"> Music - SL</label><br>
+                <label><input type="checkbox" name="artes" value="theatre"> Theater - HL</label><br>
+                <label><input type="checkbox" name="artes" value="theatre"> Theater - SL</label><br>
+                <label><input type="checkbox" name="artes" value="arts_hl"> Arts - HL</label><br>
+                <label><input type="checkbox" name="artes" value="arts_sl"> Arts - SL</label><br>
+                <label><input type="checkbox" name="artes" value="g6_none"> None </label>
+            </div>
+        </div>
+        <div class="column">
+            <h1>List of BEC subjects</h1>
+            <ul id="becList"></ul>
+        </div>
+
+        <button type="button" id="submitBtn">Send</button>
     </div>
 
-    <div class="group">
-        <h2>Group 2: Language Acquisition</h2>
-        <label><input type="checkbox" name="linguagem_aquisicao" value="french_hl"> French B - HL</label><br>
-        <label><input type="checkbox" name="linguagem_aquisicao" value="french_sl"> French B - SL</label><br>
-        <label><input type="checkbox" name="linguagem_aquisicao" value="spanish_hl"> Spanish B - HL</label><br>
-        <label><input type="checkbox" name="linguagem_aquisicao" value="spanish_sl"> Spanish B - SL</label><br>
-        <label><input type="checkbox" name="linguagem_aquisicao" value="g2_none"> None </label>
-    </div>
 
-    <div class="group">
-        <h2>Group 3: Individuals and Societies</h2>
-        <label><input type="checkbox" name="individuos_sociedades" value="history_hl"> History - HL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="history_sl"> History - SL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="geography_hl"> Geography - HL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="geography_sl"> Geography - SL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="bss_hl"> BSS - HL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="bss_sl"> BSS - SL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="economy_hl"> Economia - HL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="economy_sl"> Economia - SL </label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="ess_hl"> ESS - HL</label><br>
-        <label><input type="checkbox" name="individuos_sociedades" value="ess_sl"> ESS - SL</label>
-    </div>
 
-    <div class="group">
-        <h2>Group 4: Sciences</h2>
-        <label><input type="checkbox" name="ciencias" value="biologia"> Biology - HL </label><br>
-        <label><input type="checkbox" name="ciencias" value="biologia"> Biology - SL </label><br>
-        <label><input type="checkbox" name="ciencias" value="quimica"> Chemistry - HL </label><br>
-        <label><input type="checkbox" name="ciencias" value="quimica"> Chemistry - SL </label><br>
-        <label><input type="checkbox" name="ciencias" value="fisica"> Physics - HL </label><br>
-        <label><input type="checkbox" name="ciencias" value="fisica"> Physics - SL </label><br>
-        <label><input type="checkbox" name="ciencias" value="computacao"> Computer Science - HL </label><br>
-        <label><input type="checkbox" name="ciencias" value="computacao"> Computer Science - SL </label>
-    </div>
-
-    <div class="group">
-        <h2>Group 5: Mathematics</h2>
-        <label><input type="checkbox" name="matematica" value="matematica_aahl"> Mathematics - AA HL </label><br>
-        <label><input type="checkbox" name="matematica" value="matematica_aasl"> Mathematics - AA SL </label><br>
-        <label><input type="checkbox" name="matematica" value="matematica_aihl"> Mathematics - AI HL </label><br>
-        <label><input type="checkbox" name="matematica" value="matematica_aisl"> Mathematics - AI SL </label>
-    </div>
-
-    <div class="group">
-        <h2>Group 6: Arts</h2>
-        <label><input type="checkbox" name="artes" value="musica"> Music - HL</label><br>
-        <label><input type="checkbox" name="artes" value="musica"> Music - SL</label><br>
-        <label><input type="checkbox" name="artes" value="teatro"> Theater - HL</label><br>
-        <label><input type="checkbox" name="artes" value="teatro"> Theater - SL</label><br>
-        <label><input type="checkbox" name="artes" value="arts_hl"> Arts - HL</label><br>
-        <label><input type="checkbox" name="artes" value="arts_sl"> Arts - SL</label><br>
-        <label><input type="checkbox" name="artes" value="g6_none"> None </label>
-    </div>
-
-    <button type="button" id="submitBtn">Send</button>
 </div>
+
 
 <script src="script.js"></script>
 </body>

@@ -128,38 +128,52 @@ function enforceGroup3Logic() {
           alert("You have to do Geography and History in BEC");
         }
       }
+      updateBECList();
     });
   });
+  updateBECList();
 }
 
 // Call the function
 enforceGroup3Logic();
 
 function enforceUniqueSubjectsInGroup4() {
-  const group4Subjects = ['biologia', 'quimica', 'fisica', 'computacao'];
+  const subjects = ['biology', 'chemistry', 'physics', 'cs'];
 
-  group4Subjects.forEach(subject => {
-    const options = document.querySelectorAll(`input[name="ciencias"][value="${subject}"]`);
+  subjects.forEach(subject => {
+    const hl = document.querySelector(`input[name="ciencias"][value="${subject}_hl"]`);
+    const sl = document.querySelector(`input[name="ciencias"][value="${subject}_sl"]`);
 
-    options.forEach(cb => {
-      cb.addEventListener("change", () => {
-        if (cb.checked) {
-          options.forEach(other => {
-            if (other !== cb && other.checked) {
-              alert(`You cannot select both HL and SL for ${subject === 'computacao' ? 'Computer Science' : capitalize(subject)}.`);
-              cb.checked = false;
-            }
-          });
+    if (hl && sl) {
+      hl.addEventListener('change', () => {
+        if (hl.checked && sl.checked) {
+          alert(`You cannot select both HL and SL for ${formatSubject(subject)}.`);
+          hl.checked = false;
         }
       });
-    });
+
+      sl.addEventListener('change', () => {
+        if (hl.checked && sl.checked) {
+          alert(`You cannot select both HL and SL for ${formatSubject(subject)}.`);
+          sl.checked = false;
+        }
+      });
+      updateBECList();
+    }
   });
 
-  function capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
+  function formatSubject(code) {
+    const map = {
+      biology: "Biology",
+      chemistry: "Chemistry",
+      physics: "Physics",
+      cs: "Computer Science"
+    };
+    return map[code] || code;
   }
-}
 
+  updateBECList(); // update after setup if needed
+}
 enforceUniqueSubjectsInGroup4();
 
 function enforceSingleSelectionGroup5() {
@@ -233,3 +247,57 @@ document.getElementById('submitBtn').addEventListener('click', function () {
   alert("Send the downloaded file to your IB coordinator! \nThank you for your submission!");
 });
 
+function updateBECList() {
+  const becList = document.getElementById("becList");
+  becList.innerHTML = "";
+
+  const selected = (val) =>
+    document.querySelector(`input[value="${val}"]`)?.checked;
+
+  const addBEC = (subject) => {
+    const li = document.createElement("li");
+    li.textContent = subject;
+    becList.appendChild(li);
+  };
+
+  const historySelected = selected("history_hl") || selected("history_sl");
+  const geographySelected = selected("geography_hl") || selected("geography_sl");
+  const economicsSelected = selected("economy_hl") || selected("economy_sl");
+  const bssSelected = selected("bss_hl") || selected("bss_sl");
+  const essSelected = selected("ess_hl") || selected("ess_sl");
+  const physicsSelected = selected("physics_hl") || selected("physics_sl");
+  const chemistrySelected = selected("chemistry_hl") || selected("chemistry_sl");
+  const biologySelected = selected("biology_hl") || selected("biology_sl");
+  const computerScienceSelected = selected("cs_hl") || selected("cs_sl");
+
+  if (bssSelected) {
+    addBEC("None");
+  }
+  if (geographySelected && !historySelected) {
+    addBEC("History");
+  }
+  if (!geographySelected && historySelected) {
+    addBEC("Geography");
+  }
+  if (economicsSelected || essSelected) {
+    addBEC("Geography");
+    addBEC("History");
+  }
+  if (physicsSelected) {
+    addBEC("Chemistry");
+    addBEC("Biology");
+  }
+  if (chemistrySelected) {
+    addBEC("Biology");
+    addBEC("Physics");
+  }
+  if (biologySelected) {
+    addBEC("Chemistry");
+    addBEC("Physics");
+  }
+  if (computerScienceSelected){
+    addBEC("Biology");
+    addBEC("Chemistry");
+    addBEC("Physics");
+  }
+}
