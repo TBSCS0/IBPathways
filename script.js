@@ -260,6 +260,17 @@ function updateBECList() {
     becList.appendChild(li);
   };
 
+  const removeBEC = (subject) => {
+    const items = becList.getElementsByTagName("li");
+    for (let i = 0; i < items.length; i++) {
+      if (items[i].textContent === subject) {
+        becList.removeChild(items[i]);
+        break; // Stop after removing the first match
+      }
+    }
+  };
+
+
   const historySelected = selected("history_hl") || selected("history_sl");
   const geographySelected = selected("geography_hl") || selected("geography_sl");
   const economicsSelected = selected("economy_hl") || selected("economy_sl");
@@ -270,34 +281,31 @@ function updateBECList() {
   const biologySelected = selected("biology_hl") || selected("biology_sl");
   const computerScienceSelected = selected("cs_hl") || selected("cs_sl");
 
+  addBEC("History");
+  addBEC("Geography");
+  addBEC("Philosophy");
+  addBEC("Sociology");
+  addBEC("Physics");
+  addBEC("Chemistry");
+  addBEC("Biology");
+
   if (bssSelected) {
-    addBEC("None");
+    removeBEC("History");
+    removeBEC("Geography");
   }
-  if (geographySelected && !historySelected) {
-    addBEC("History");
+  if (historySelected){
+    removeBEC("History");
   }
-  if (!geographySelected && historySelected) {
-    addBEC("Geography");
+  if (geographySelected){
+    removeBEC("Geography");
   }
-  if (economicsSelected || essSelected) {
-    addBEC("Geography");
-    addBEC("History");
+  if (physicsSelected){
+    removeBEC("Physics");
   }
-  if (physicsSelected) {
-    addBEC("Chemistry");
-    addBEC("Biology");
+  if (chemistrySelected){
+      removeBEC("Chemistry");
   }
-  if (chemistrySelected) {
-    addBEC("Biology");
-    addBEC("Physics");
-  }
-  if (biologySelected) {
-    addBEC("Chemistry");
-    addBEC("Physics");
-  }
-  if (computerScienceSelected){
-    addBEC("Biology");
-    addBEC("Chemistry");
-    addBEC("Physics");
+  if (biologySelected){
+      removeBEC("Biology");
   }
 }
