@@ -92,6 +92,7 @@ function enforceSingleSelection(groupName) {
           if (other !== cb) other.checked = false;
         });
       }
+      setItinerarioFormativo();
     });
   });
 }
@@ -129,9 +130,9 @@ function enforceGroup3Logic() {
         }
       }
       updateBECList();
+      setItinerarioFormativo();
     });
   });
-  updateBECList();
 }
 
 // Call the function
@@ -150,6 +151,8 @@ function enforceUniqueSubjectsInGroup4() {
           alert(`You cannot select both HL and SL for ${formatSubject(subject)}.`);
           hl.checked = false;
         }
+        updateBECList();
+        setItinerarioFormativo();
       });
 
       sl.addEventListener('change', () => {
@@ -157,8 +160,10 @@ function enforceUniqueSubjectsInGroup4() {
           alert(`You cannot select both HL and SL for ${formatSubject(subject)}.`);
           sl.checked = false;
         }
+        updateBECList();
+        setItinerarioFormativo();
       });
-      updateBECList();
+
     }
   });
 
@@ -171,8 +176,6 @@ function enforceUniqueSubjectsInGroup4() {
     };
     return map[code] || code;
   }
-
-  updateBECList(); // update after setup if needed
 }
 enforceUniqueSubjectsInGroup4();
 
@@ -186,6 +189,7 @@ function enforceSingleSelectionGroup5() {
           if (other !== cb) other.checked = false;
         });
       }
+      setItinerarioFormativo();
     });
   });
 }
@@ -202,6 +206,7 @@ function enforceSingleSelectionGroup6() {
           if (other !== cb) other.checked = false;
         });
       }
+      setItinerarioFormativo();
     });
   });
 }
@@ -270,7 +275,6 @@ function updateBECList() {
     }
   };
 
-
   const historySelected = selected("history_hl") || selected("history_sl");
   const geographySelected = selected("geography_hl") || selected("geography_sl");
   const economicsSelected = selected("economy_hl") || selected("economy_sl");
@@ -279,7 +283,6 @@ function updateBECList() {
   const physicsSelected = selected("physics_hl") || selected("physics_sl");
   const chemistrySelected = selected("chemistry_hl") || selected("chemistry_sl");
   const biologySelected = selected("biology_hl") || selected("biology_sl");
-  const computerScienceSelected = selected("cs_hl") || selected("cs_sl");
 
   addBEC("History");
   addBEC("Geography");
@@ -303,9 +306,40 @@ function updateBECList() {
     removeBEC("Physics");
   }
   if (chemistrySelected){
-      removeBEC("Chemistry");
+    removeBEC("Chemistry");
   }
   if (biologySelected){
-      removeBEC("Biology");
+    removeBEC("Biology");
   }
 }
+
+function setItinerarioFormativo() {
+  const ifElement = document.getElementById("if");
+  const selected = (val) => document.querySelector(`input[value="${val}"]`)?.checked;
+
+  const frenchSelected = selected("french_hl") || selected("french_sl");
+  const spanishSelected = selected("spanish_hl") || selected("spanish_sl");
+  const mathsHLSelected = selected("maths_hl") || selected("math_ai_hl") || selected("math_aa_hl"); // adjust values as needed
+  const csSelected = selected("cs_hl") || selected("cs_sl");
+  const historySelected = selected("history_hl") || selected("history_sl");
+  const geographySelected = selected("geography_hl") || selected("geography_sl");
+
+  const areas = [];
+
+  if (frenchSelected || spanishSelected) {
+    areas.push("Linguagens");
+  }
+  if (mathsHLSelected) {
+    areas.push("Matemática");
+  }
+  if (csSelected) {
+    areas.push("Ciências da Natureza");
+  }
+  if (historySelected && geographySelected) {
+    areas.push("Ciências Humanas");
+  }
+
+  ifElement.textContent = areas.length > 0 ? areas.join(" / ") : "None";
+}
+
+setItinerarioFormativo();
